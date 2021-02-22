@@ -4,6 +4,19 @@
 </ol>
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
+            <div    class="alert alert-success" role="alert" 
+                    *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}
+            </div>
+            <div    class="alert alert-danger" role="alert" 
+                    *ngIf="mensagemErro">
+                {{ mensagemErro }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-2">
             <button class="btn btn-primary" (click)='novoCadastro()'>
                 <i class="fa fa-plus"></i> Novo
@@ -11,6 +24,7 @@
         </div>
     </div>
     <br/>
+
     <div class="row">
         <div class="col-md-12">
             <table class="table table-condensed table-hover">
@@ -34,10 +48,41 @@
                                     routerLink="/clientes-form/{{ cliente.id }}">
                                 <i class="fa fa-user-edit"></i>
                             </button>
+
+                            <button class="btn btn-danger ml-2" (click)="preparaDelecao(cliente)"
+                                    data-toggle="modal" 
+                                    data-target="#modalDelecao">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="moral-header">
+                    <h4>Confirmação</h4>
+                </div>
+
+                <div class="modal-body" *ngIf="clienteSelecionado">
+                    Confirma a deleção do(a) cliente {{ clienteSelecionado.nome }}?
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deletarCliente()" 
+                            data-dismiss="modal">
+                        Sim
+                    </button>
+                    <button class="btn btn-dark" data-dismiss="modal">
+                        Não
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
