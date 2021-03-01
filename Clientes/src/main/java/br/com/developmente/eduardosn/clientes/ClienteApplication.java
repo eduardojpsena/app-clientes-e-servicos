@@ -18,7 +18,6 @@ public class ClienteApplication {
             repository.save(cliente);
         };
     }*/
-
     public static void main(String[] args) {
 
         SpringApplication.run(ClienteApplication.class, args);
