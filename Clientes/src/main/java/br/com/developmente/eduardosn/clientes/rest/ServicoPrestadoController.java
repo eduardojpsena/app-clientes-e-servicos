@@ -52,5 +52,5 @@ public class ServicoPrestadoController {
         return servicoPrestadoRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
     }
 
-    
+
 }
