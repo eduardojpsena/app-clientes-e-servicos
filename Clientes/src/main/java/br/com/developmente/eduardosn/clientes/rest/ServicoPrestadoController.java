@@ -34,7 +34,9 @@ public class ServicoPrestadoController {
 
         Cliente cliente = clienteRepository
                 .findById(idCliente)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente inexistente"));
+                .orElseThrow(() ->
+                        new ResponseStatusException(
+                                HttpStatus.BAD_REQUEST, "Cliente inexistente"));
 
         ServicoPrestado servicoPrestado = new ServicoPrestado();
         servicoPrestado.setDescricao(dto.getDescricao());
