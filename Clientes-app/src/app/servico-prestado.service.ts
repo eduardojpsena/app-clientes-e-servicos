@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ServicoPrestadoBusca } from './servico-prestado/servico-prestado-lista/servicoPrestadoBusca';
 import { ServicoPrestado } from './servico-prestado/servicoPrestado';
 
 @Injectable({
@@ -20,5 +21,21 @@ export class ServicoPrestadoService {
   atualizar( servicoPrestado: ServicoPrestado) : Observable<any> {
     return this.http.put<ServicoPrestado>(`${this.apiUrl}/${servicoPrestado.idCliente}`
                                             , servicoPrestado)
+  }
+
+  buscar( nome: string, mes: number): Observable<ServicoPrestadoBusca[]>{
+    let httpParams = new HttpParams()
+                      .set("nome", nome)
+                      .set("mes", mes ? mes.toString(): '');
+    
+    if (!nome) {
+      httpParams = new HttpParams()
+                      .set("mes", mes ? mes.toString(): '');
+    }
+                      
+    const url = this.apiUrl + "?" + httpParams.toString();
+    
+    console.log(url)
+    return this.http.get<any>(url)
   }
 }

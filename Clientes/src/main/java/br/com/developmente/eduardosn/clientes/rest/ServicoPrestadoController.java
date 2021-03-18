@@ -54,6 +54,5 @@ public class ServicoPrestadoController {
             @RequestParam(value = "mes", required = false) Integer mes){
         return servicoPrestadoRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
     }
-
-
+    
 }
